@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/include/template.xhtml">
+	
+	<!-- Mudar o gerador do token -->
+	<ui:define name="body">
+		<h:messages />
+		
+		<h:form>
+			<p:growl id="messages" showDetail="true"/>
+			<p:panel>
+					<p:panelGrid columns="2">
+						<h:outputText value="ID: " />
+						<h:outputText id="id" value="#{MunicipioMBean.municipio.id}"/>
+						
+						<h:outputText value="Nome:" />
+						<h:inputText id="nome" value="#{MunicipioMBean.municipio.nome}" size="25"
+									maxlength="25" required="true" 
+									requiredMessage="Nome obrigatório" />					
+						<h:outputText value="Estado: " />
+						<p:selectOneMenu id="estado" value="#{MunicipioMBean.municipio.estado}">
+							<!--  <f:selectItems value="#{estadoMBean.list}" var="estado" itemLabel="#{estado.nome}" 
+										itemValue="#{estado}"/>-->
+						</p:selectOneMenu>			
+					</p:panelGrid>
+			</p:panel>
+		</h:form>
+		<p:toolbar>
+				 <p:toolbarGroup>
+                    <p:commandButton value="Novo" 
+                    				icon="ui-icon ui-icon-plus" 
+                    				action="municipio_form.jsf?faces-redirect=true" />
+                    
+                    <p:commandButton value="Salvar" 
+                    				icon="ui-icon ui-icon-disk" 
+                    				action="#{MunicipioMBean.add}" />                                      	
+                </p:toolbarGroup>
+		</p:toolbar>
+	</ui:define>
+</ui:composition>
+
+
+<!-- <p:selectOneMenu id="estado" value="#{MunicipioMBean.municipio.estado}" converter="estadoConverter">
+					<f:selectItems value="#{estadoMBean.list}" var="estado" itemLabel="#{estado.nome}" itemValue="#{estado}"/>
+				</p:selectOneMenu>	 -->
